@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "testvm" do |testvm|
+    testvm.vm.box = "minimal/jessie64"
+    testvm.vm.network "public_network", ip: "192.168.0.100"
+#    testvm.vm.provision "shell", path: "webserver.sh"
+  end
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+    v.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+end
+
+
